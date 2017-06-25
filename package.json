@@ -1,0 +1,37 @@
+{
+  "name": "@itsjustcon/aws-utils",
+  "version": "1.0.0",
+  "description": "A collection of personal AWS utils that make working with aws-sdk easier",
+  "main": "index.js",
+  "author": "Connor Grady <conair360@gmail.com> (http://connorgrady.com/)",
+  "homepage": "https://github.com/itsjustcon/aws-utils-nodejs",
+  "repository": "itsjustcon/aws-utils-nodejs",
+  "bugs": {
+    "url": "https://github.com/itsjustcon/aws-utils-nodejs/issues"
+  },
+  "license": "MIT",
+  "directories": {
+    "lib": "src",
+    "test": "test"
+  },
+  "keywords": [
+    "aws",
+    "utility"
+  ],
+  "dependencies": {
+    "lodash": "^3.0.0"
+  },
+  "peerDependencies": {
+    "aws-sdk": "^2.0.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.0.0",
+    "chai": "^4.0.0",
+    "mocha": "^3.0.0",
+    "sinon": "^2.0.0",
+    "sinon-chai": "^2.0.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
