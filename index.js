@@ -6,7 +6,7 @@
  * @flow
  */
 
-require('./configure-aws');
+require('./configure');
 
 const {
     serializeDynamoDbAttributes,

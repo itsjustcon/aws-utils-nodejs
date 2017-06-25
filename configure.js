@@ -1,7 +1,7 @@
 'use strict';
 /**
- * configure-aws.js
- * ----------------
+ * configure.js
+ * ------------
  */
 
 //const AWS = require('aws-sdk');
