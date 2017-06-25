@@ -6,12 +6,12 @@
  * @flow
  */
 
-require('./src/configure-aws');
+require('./configure-aws');
 
 const {
     serializeDynamoDbAttributes,
     deserializeDynamoDbAttributes,
-} = require('./src/dynamodb-utils');
+} = require('./dynamodb-utils');
 
 module.exports = {
     serializeDynamoDbAttributes,
