@@ -11,7 +11,7 @@ require('./configure');
 const {
     serializeDynamoDbAttributes,
     deserializeDynamoDbAttributes,
-} = require('./dynamodb-utils');
+} = require('./dynamodb');
 
 module.exports = {
     serializeDynamoDbAttributes,

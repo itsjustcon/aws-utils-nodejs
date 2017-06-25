@@ -1,7 +1,7 @@
 'use strict';
 /**
- * dynamodb-utils.js
- * -----------------
+ * dynamodb.js
+ * -----------
  *
  * @flow
  */
