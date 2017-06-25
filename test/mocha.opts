@@ -1,0 +1,4 @@
+--require src/configure-aws.js
+--slow 2000
+--recursive
+--bail
