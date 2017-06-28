@@ -16,4 +16,5 @@ const {
 module.exports = {
     serializeDynamoDbAttributes,
     deserializeDynamoDbAttributes,
+    createDynamoDbFilterExpression,
 }

@@ -98,9 +98,35 @@ function deserializeDynamoDbAttributes(attributes/*: object*/) /*: object*/ {
     return _.mapValues(attributes, deserializeDynamoDbAttributeValue);
 }
 
+/*::
+type DynamoDb$FilterExpressionArgs = {
+    FilterExpression: string,
+    ExpressionAttributeNames: { [key:string]: string },
+    ExpressionAttributeValues: { [key:string]: string },
+}
+*/
+
+function createDynamoDbFilterExpression(query/*: object*/) /*: DynamoDb$FilterExpressionArgs*/ {
+    const query$serialized = serializeDynamoDbAttributes(query);
+    const FilterExpressions = [];
+    const ExpressionAttributeNames = {};
+    const ExpressionAttributeValues = {};
+    for (const key in query$serialized) {
+        FilterExpressions.push(`#${key} = :${key}`);
+        ExpressionAttributeNames[`#${key}`] = key;
+        ExpressionAttributeValues[`:${key}`] = query$serialized[key];
+    }
+    return {
+        FilterExpression: FilterExpressions.join(' and '),
+        ExpressionAttributeNames,
+        ExpressionAttributeValues,
+    };
+}
+
 module.exports = {
     serializeDynamoDbAttributeValue,
     deserializeDynamoDbAttributeValue,
     serializeDynamoDbAttributes,
     deserializeDynamoDbAttributes,
+    createDynamoDbFilterExpression,
 };
