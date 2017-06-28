@@ -1,6 +1,6 @@
 {
   "name": "@itsjustcon/aws-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of personal AWS utils that make working with aws-sdk easier",
   "main": "index.js",
   "author": "Connor Grady <conair360@gmail.com> (http://connorgrady.com/)",
