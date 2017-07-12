@@ -30,32 +30,49 @@ function isDynamoDbAttributeValue(value/*: any*/) /*: boolean*/ {
 
 function serializeDynamoDbAttributeValue(value/*: any*/) /*: object*/ {
     if (typeof value === 'boolean') {
-        return { BOOL: value }
+        return { BOOL: value };
     } else if (typeof value === 'number') {
-        return { N: value.toString() }
+        return { N: value.toString() };
     } else if (typeof value === 'string') {
-        return { S: value }
+        if (value.length === 0) {
+            return { NULL: true };
+        }
+        return { S: value };
     } else if (Array.isArray(value)) {
-        if (value.every((val) => typeof val === 'number')) {
-            return { NS: value.map((val) => val.toString()) }
+        if (value.length === 0) {
+            return { NULL: true };
+        } else if (value.every((val) => typeof val === 'number')) {
+            return { NS: value.map((val) => val.toString()) };
         } else if (value.every((val) => typeof val === 'string')) {
-            return { SS: value }
+            if (value.every((val) => val.length === 0)) {
+                return { NULL: true };
+            }
+            return { SS: value };
         } else if (value.every((val) => Buffer.isBuffer(val) || typeof val === 'string')) {
-            return { BS: value }
+            if (value.every((val) => val.length === 0)) {
+                return { NULL: true };
+            }
+            return { BS: value };
         } else {
-            return { L: value.map(serializeDynamoDbAttributeValue) } // nested/recursive AttributeValue
+            return { L: value.map(serializeDynamoDbAttributeValue) }; // nested/recursive AttributeValue
         }
     } else if (Buffer.isBuffer(value)) {
+        if (value.length === 0) {
+            return { NULL: true };
+        }
         return { B: value }
     } else if (_.isPlainObject(value)) {
+        if (Object.keys(value).length === 0) {
+            return { NULL: true };
+        }
         //if (Object.keys(value).every((val) => DynamoDbAttributeKeys.includes(val))) {
         if (isDynamoDbAttributeValue(value)) {
             return value;
         } else {
-            return { M: _.mapValues(value, serializeDynamoDbAttributeValue) } // nested/recursive AttributeValue
+            return { M: _.mapValues(value, serializeDynamoDbAttributeValue) }; // nested/recursive AttributeValue
         }
     } else if (value == void 0) {
-        return { NULL: true/*value*/ }
+        return { NULL: true };
     }
 }
 function deserializeDynamoDbAttributeValue(attributeValue/*: object*/) /*: any*/ {
