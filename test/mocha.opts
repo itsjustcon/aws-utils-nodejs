@@ -1,4 +1,4 @@
---require configure-aws.js
+--require configure.js
 --slow 2000
 --recursive
 --bail
